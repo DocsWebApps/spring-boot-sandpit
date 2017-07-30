@@ -1,6 +1,8 @@
 package com.docswebapps;
 
 import com.docswebapps.jdbc.service.PersonService;
+import com.docswebapps.spring5guru.controller.MyController;
+import org.springframework.context.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -40,7 +42,10 @@ public class SpringBootSandpitApplication  implements CommandLineRunner {
     PersonService personService;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringBootSandpitApplication.class, args);
+		ApplicationContext ctx = SpringApplication.run(SpringBootSandpitApplication.class, args);
+		// Retrieve a bean from the application context where all instantiated beans are held.
+		MyController myController = (MyController) ctx.getBean("myController");
+		myController.hello();
 	}
 
 	@Override

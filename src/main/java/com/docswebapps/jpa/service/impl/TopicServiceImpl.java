@@ -1,18 +1,20 @@
 package com.docswebapps.jpa.service.impl;
 
 import java.util.List;
-
+import java.util.Optional;
 import com.docswebapps.jpa.domain.Topic;
 import com.docswebapps.jpa.repository.TopicRepository;
 import com.docswebapps.jpa.service.TopicService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TopicServiceImpl implements TopicService {
-	
-	@Autowired
-    TopicRepository topicRepo;
+
+    private final TopicRepository topicRepo;
+
+    public TopicServiceImpl(TopicRepository topicRepo) {
+    	this.topicRepo = topicRepo;
+	}
 
 	@Override
 	public List<Topic> getAllTopics() {
@@ -26,8 +28,7 @@ public class TopicServiceImpl implements TopicService {
 	}
 
 	@Override
-	public Topic getTopic(Long id) {
-		return topicRepo.findOne(id);
+	public Optional<Topic> getTopic(Long id) {
+		return topicRepo.findById(id);
 	}
-
 }

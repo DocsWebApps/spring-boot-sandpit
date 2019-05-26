@@ -1,10 +1,10 @@
-package com.docswebapps.web.controller;
+package com.docswebapps.jpa.web.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.docswebapps.jpa.domain.Topic;
 import com.docswebapps.jpa.service.TopicService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/topic")
+@RequestMapping("/rest/topic")
 public class TopicRestController {
-	
-	@Autowired
-	TopicService topicService;
-	
+
+	private TopicService topicService;
+
+	public TopicRestController(TopicService topicService) {
+		this.topicService = topicService;
+	}
+
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Topic> getAllTopics() {
 		return topicService.getAllTopics();
@@ -29,7 +32,7 @@ public class TopicRestController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/{id}")
-	public Topic getTopic(@PathVariable Long id) {
+	public Optional<Topic> getTopic(@PathVariable Long id) {
 		return topicService.getTopic(id);
 	}
 	
@@ -42,5 +45,4 @@ public class TopicRestController {
 	public String deleteTopic(@PathVariable Long id) {
 		return "string";
 	}
-
 }

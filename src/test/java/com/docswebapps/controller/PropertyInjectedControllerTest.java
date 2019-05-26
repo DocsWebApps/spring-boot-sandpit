@@ -1,6 +1,6 @@
 package com.docswebapps.controller;
 
-import com.docswebapps.spring5guru.controller.PropertyInjectedController;
+import com.docswebapps.spring5guru.dependencyInjection.PropertyInjectedController;
 import com.docswebapps.spring5guru.service.Impl.GreetingServiceImpl;
 import org.junit.Before;
 import org.junit.Test;

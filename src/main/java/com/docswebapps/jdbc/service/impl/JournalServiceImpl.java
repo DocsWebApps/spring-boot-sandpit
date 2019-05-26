@@ -3,12 +3,10 @@ package com.docswebapps.jdbc.service.impl;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.docswebapps.jdbc.domain.Journal;
 import com.docswebapps.jdbc.service.JournalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +14,11 @@ import org.springframework.stereotype.Service;
 public class JournalServiceImpl implements JournalService{
 	
 	private static final Logger log=LoggerFactory.getLogger(JournalService.class);
+	private final JdbcTemplate jdbcTemplate;
 	
-	@Autowired
-	JdbcTemplate jdbcTemplate;
+	public JournalServiceImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 	
 	@Override
 	public void insertData() {

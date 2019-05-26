@@ -1,4 +1,4 @@
-package com.docswebapps.spring5guru.controller;
+package com.docswebapps.spring5guru.controller.web;
 
 import com.docswebapps.spring5guru.repository.BookRepository;
 import org.springframework.stereotype.Controller;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Dave Collier on 28/07/2017.
  */
 @Controller
-@RequestMapping(value = "/books")
+@RequestMapping(value = "/web/books")
 public class BooksController {
 
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     public BooksController(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
@@ -24,5 +24,4 @@ public class BooksController {
         model.addAttribute("allBooks", bookRepository.findAll());
         return "AllBooks";
     }
-
 }

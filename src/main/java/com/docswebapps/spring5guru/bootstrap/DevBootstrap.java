@@ -16,11 +16,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    PublisherRepository publisherRepository;
-    AuthorRepository authorRepository;
-    BookRepository bookRepository;
+    private final PublisherRepository publisherRepository;
+    private final AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
 
-    public DevBootstrap(PublisherRepository publisherRepository, AuthorRepository authorRepository, BookRepository bookRepository) {
+    public DevBootstrap(PublisherRepository publisherRepository,
+                        AuthorRepository authorRepository,
+                        BookRepository bookRepository) {
         this.publisherRepository = publisherRepository;
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
@@ -32,7 +34,6 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
     }
 
     private void initData() {
-
         // Add publisher "Harper Collins"
         Publisher harperCollins=new Publisher();
         harperCollins.setName("Harper Collins");

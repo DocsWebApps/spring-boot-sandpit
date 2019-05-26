@@ -51,5 +51,4 @@ public class Topic {
 		returnString.append("Description: "+this.getDescription()+")");
 		return returnString.toString();
 	}
-
 }

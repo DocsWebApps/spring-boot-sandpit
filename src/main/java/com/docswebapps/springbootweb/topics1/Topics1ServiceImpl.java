@@ -2,18 +2,21 @@ package com.docswebapps.springbootweb.topics1;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
 public class Topics1ServiceImpl implements Topics1Service {
-	
-	@Autowired
-	private Topic1Repository topic1Repository;
+
+	private final Topic1Repository topic1Repository;
+
+	public Topics1ServiceImpl(Topic1Repository topic1Repository) {
+		this.topic1Repository = topic1Repository;
+	}
 	
 	@Override
 	public String deleteTopic(String id) {
-		topic1Repository.delete(id);
+		topic1Repository.deleteById(id);
 		return "Deleted!";
 	}
 	
@@ -25,8 +28,8 @@ public class Topics1ServiceImpl implements Topics1Service {
 	}
 	
 	@Override
-	public Topic1 getTopic(String id) {
-		return topic1Repository.findOne(id);
+	public Optional<Topic1> getTopic(String id) {
+		return topic1Repository.findById(id);
 	}
 	
 	@Override
@@ -40,5 +43,4 @@ public class Topics1ServiceImpl implements Topics1Service {
 		topic1Repository.save(topic);
 		return "Updated!";
 	}
-	
 }

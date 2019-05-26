@@ -1,4 +1,4 @@
-package com.docswebapps.spring5guru.controller;
+package com.docswebapps.spring5guru.dependencyInjection;
 
 import com.docswebapps.spring5guru.service.GreetingService;
 

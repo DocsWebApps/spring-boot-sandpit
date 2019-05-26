@@ -1,13 +1,13 @@
-package com.docswebapps.spring5guru.controller;
+package com.docswebapps.spring5guru.dependencyInjection;
 
 import com.docswebapps.spring5guru.service.GreetingService;
 
 /**
  * Created by Dave Collier on 30/07/2017.
- * The best way, private property, injection from the interface via a constructor.
+ * The best way, private final property, injection from the interface via a constructor.
  */
 public class ConstructorInjectedProperty {
-    private GreetingService greetingService;
+    private final GreetingService greetingService;
 
     public ConstructorInjectedProperty(GreetingService greetingService) {
         this.greetingService = greetingService;

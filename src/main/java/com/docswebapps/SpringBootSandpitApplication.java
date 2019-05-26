@@ -1,9 +1,8 @@
 package com.docswebapps;
 
 import com.docswebapps.jdbc.service.PersonService;
-import com.docswebapps.spring5guru.controller.MyController;
+import com.docswebapps.spring5guru.controller.web.MyController;
 import org.springframework.context.ApplicationContext;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 public class SpringBootSandpitApplication  implements CommandLineRunner {
-	
 	// To run this in an application server
 	// 1. Extend SpringBootServletInitializer
 	//		import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -34,12 +32,15 @@ public class SpringBootSandpitApplication  implements CommandLineRunner {
 	// END
 	
 	private static final Logger log=LoggerFactory.getLogger(SpringBootSandpitApplication.class);
-	
-	@Autowired
-	JournalService journalService;
-	
-	@Autowired
-    PersonService personService;
+	private final JournalService journalService;
+	private final PersonService personService;
+
+	public SpringBootSandpitApplication(JournalService journalService,
+										PersonService personService)
+	{
+		this.journalService = journalService;
+		this.personService = personService;
+	}
 
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(SpringBootSandpitApplication.class, args);

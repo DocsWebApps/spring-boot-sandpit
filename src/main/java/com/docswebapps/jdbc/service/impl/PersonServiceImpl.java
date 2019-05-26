@@ -2,12 +2,10 @@ package com.docswebapps.jdbc.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.docswebapps.jdbc.domain.Person;
 import com.docswebapps.jdbc.service.PersonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +14,11 @@ public class PersonServiceImpl implements PersonService {
 	
 	private static final Logger log=LoggerFactory.getLogger(PersonService.class);
 	
-	@Autowired
-	JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate;
+
+	public PersonServiceImpl(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public void insertData() {
@@ -38,5 +39,4 @@ public class PersonServiceImpl implements PersonService {
 		jdbcTemplate.query("SELECT * FROM PERSON", new Object[]{}, (rs,row) -> new Person(rs.getLong("id"), rs.getString("firstName"),rs.getString("lastName"), rs.getInt("age"))).forEach(person -> people.add(person));
 		return people;
 	}
-
 }

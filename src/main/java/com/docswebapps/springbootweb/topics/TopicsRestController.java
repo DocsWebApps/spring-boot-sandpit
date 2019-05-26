@@ -1,7 +1,6 @@
 package com.docswebapps.springbootweb.topics;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,11 +8,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/topics")
+@RequestMapping("/rest/topics")
 public class TopicsRestController {
 	
-	@Autowired
-	TopicsService topicsService;
+	private final TopicsService topicsService;
+
+	public TopicsRestController(TopicsService topicsService) {
+		this.topicsService = topicsService;
+	}
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public List<Topic> getAllTopics() {
@@ -39,5 +41,4 @@ public class TopicsRestController {
 	public String deleteTopic(@PathVariable int id) {
 		return topicsService.deleteTopic(id);
 	}
-
 }

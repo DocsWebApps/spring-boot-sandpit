@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.io.IOException;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/files")
@@ -17,8 +18,9 @@ public class FileBooksController {
 
     @GetMapping(value = "/readBooks")
     public String booksFileRead(Model model) throws IOException {
-        model.addAttribute("books", this.fileBooksService.parseBooksFile());
-        model.addAttribute("keys", this.fileBooksService.parseBooksFile().keySet());
+        Map<String,String> booksMap = this.fileBooksService.parseBooksFile();
+        model.addAttribute("books", booksMap);
+        model.addAttribute("keys", booksMap.keySet());
         return "readBooks";
     }
 }

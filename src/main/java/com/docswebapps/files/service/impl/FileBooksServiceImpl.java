@@ -20,12 +20,21 @@ public class FileBooksServiceImpl implements FileBooksService {
 //  String fileName = env.getProperty("FILES_FILE_BOOKS_SERVICE_INFILE");
     String fileName;
 
+    // Pick up value from application.properties
+    @Value("${docswebapps.files.filebooksservice1}")
+    String appSetting;
+
+    // Pick up value from environment variable
+    @Value("${docswebapps.files.filebooksservice2}")
+    String envSetting;
+
     public FileBooksServiceImpl(Environment env) {
         this.env = env;
     }
 
     @Override
     public Map<String,String> parseBooksFile() throws IOException {
+        System.out.println(appSetting + " " + envSetting);
         Map<String,String> cache = new HashMap<>();
         File file = (fileName == null) ? new File("test.txt") : new File(fileName);
         if(file.canRead()) {

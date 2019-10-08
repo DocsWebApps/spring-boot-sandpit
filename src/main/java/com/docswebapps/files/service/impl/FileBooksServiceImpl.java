@@ -1,6 +1,7 @@
 package com.docswebapps.files.service.impl;
 import com.docswebapps.files.service.FileBooksService;
 import org.jboss.logging.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
@@ -15,6 +16,10 @@ public class FileBooksServiceImpl implements FileBooksService {
     private final static Logger log = Logger.getLogger(FileBooksServiceImpl.class);
     private Environment env;
 
+    @Value("${FILES_FILE_BOOKS_SERVICE_INFILE}") // OR
+//  String fileName = env.getProperty("FILES_FILE_BOOKS_SERVICE_INFILE");
+    String fileName;
+
     public FileBooksServiceImpl(Environment env) {
         this.env = env;
     }
@@ -22,7 +27,6 @@ public class FileBooksServiceImpl implements FileBooksService {
     @Override
     public Map<String,String> parseBooksFile() throws IOException {
         Map<String,String> cache = new HashMap<>();
-        String fileName = env.getProperty("FILES_FILE_BOOKS_SERVICE_INFILE");
         File file = (fileName == null) ? new File("test.txt") : new File(fileName);
         if(file.canRead()) {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {

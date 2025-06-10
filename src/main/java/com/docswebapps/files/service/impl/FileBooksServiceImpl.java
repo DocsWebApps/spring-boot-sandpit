@@ -16,7 +16,7 @@ public class FileBooksServiceImpl implements FileBooksService {
     private final static Logger log = Logger.getLogger(FileBooksServiceImpl.class);
     private Environment env;
 
-    @Value("${FILES_FILE_BOOKS_SERVICE_INFILE}") // OR
+//    @Value("${FILES_FILE_BOOKS_SERVICE_INFILE}") // OR
 //  String fileName = env.getProperty("FILES_FILE_BOOKS_SERVICE_INFILE");
     String fileName;
 
